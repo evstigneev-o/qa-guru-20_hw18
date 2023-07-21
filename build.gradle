@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitVersion = "5.10.0-M1"
+    restAssuredVerion = "5.3.1"
+    lombokVersion = "1.18.28"
+}
+
+dependencies {
+    testImplementation(
+            "org.junit.jupiter:junit-jupiter:${junitVersion}",
+            "io.rest-assured:rest-assured:${restAssuredVerion}"
+    )
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
+}
+
+test {
+    useJUnitPlatform()
+}
