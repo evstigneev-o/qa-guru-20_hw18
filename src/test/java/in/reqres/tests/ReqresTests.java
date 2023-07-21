@@ -1,4 +1,4 @@
-package in.reqres;
+package in.reqres.tests;
 
 import in.reqres.models.RegisterRequest;
 import io.restassured.http.ContentType;

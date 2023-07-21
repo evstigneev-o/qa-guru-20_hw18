@@ -1,4 +1,4 @@
-package in.reqres;
+package in.reqres.tests;
 
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
