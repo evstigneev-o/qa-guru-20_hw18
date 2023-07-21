@@ -15,7 +15,8 @@ ext {
 dependencies {
     testImplementation(
             "org.junit.jupiter:junit-jupiter:${junitVersion}",
-            "io.rest-assured:rest-assured:${restAssuredVerion}"
+            "io.rest-assured:rest-assured:${restAssuredVerion}",
+            "io.rest-assured:json-schema-validator:${restAssuredVerion}"
     )
     testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
     testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
