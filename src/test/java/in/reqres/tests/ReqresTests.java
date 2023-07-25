@@ -1,10 +1,6 @@
 package in.reqres.tests;
 
-import in.reqres.models.LoginRequest;
-import in.reqres.models.RegisterRequest;
-import in.reqres.models.RegisterResponse;
-import in.reqres.models.SingleUserResponse;
-import io.qameta.allure.Description;
+import in.reqres.models.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -20,7 +16,7 @@ public class ReqresTests extends BaseTest {
 
     @Test
     public void getListUsersSizeTest() {
-        List<Integer> responseListSize = step("Отправка запроса getListUsersSize", () -> given()
+        List<Integer> responseListSize = step("Отправка запроса getListUsers", () -> given()
                 .param("page", "2")
                 .get("users")
                 .then()
@@ -28,6 +24,25 @@ public class ReqresTests extends BaseTest {
                 .extract().jsonPath().getList("data.id")
         );
         step("Проверка ответа", () -> assertThat(responseListSize.size(), equalTo(6)));
+    }
+
+    @Test
+    public void checkUserDataFromUsersListTest() {
+        UsersListResponse response = step("Отправка запроса getListUsers", () -> given()
+                .param("page", "2")
+                .get("users")
+                .then()
+                .spec(listUserResponse200Spec)
+                .extract().as(UsersListResponse.class)
+        );
+        step("Проверка ответа", () ->
+                assertAll(
+                        () -> assertThat(response.getPage(), equalTo(2)),
+                        () -> assertThat(response.getPerPage(), equalTo(6)),
+                        () -> assertThat(response.getData().size(), equalTo(6)),
+                        () -> assertThat(response.getData().get(0).getId(),equalTo(7))
+                )
+        );
     }
 
     @Test
