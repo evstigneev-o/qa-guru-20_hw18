@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'io.qameta.allure' version '2.11.2'
 }
 
 repositories {
@@ -10,13 +11,15 @@ ext {
     junitVersion = "5.10.0-M1"
     restAssuredVerion = "5.3.1"
     lombokVersion = "1.18.28"
+    allureVersion = "2.22.2"
 }
 
 dependencies {
     testImplementation(
             "org.junit.jupiter:junit-jupiter:${junitVersion}",
             "io.rest-assured:rest-assured:${restAssuredVerion}",
-            "io.rest-assured:json-schema-validator:${restAssuredVerion}"
+            "io.rest-assured:json-schema-validator:${restAssuredVerion}",
+            "io.qameta.allure:allure-rest-assured:${allureVersion}"
     )
     testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
     testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
